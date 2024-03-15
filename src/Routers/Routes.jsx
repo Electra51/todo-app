@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../Layouts/MainLayout";
-import Home from "../Pages/HomePage/Home";
+
 import User from "../Pages/UserPage/User";
 import Team from "../Pages/TeamPage/Team";
 import Setting from "../Pages/SettingPage/Setting";
 import Files from "../Pages/FilesPage/Files";
+import TaskListPage from "../Pages/TaskListPage/TaskListPage";
 
 export const router = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <TaskListPage />,
       },
       {
         path: "/user",
