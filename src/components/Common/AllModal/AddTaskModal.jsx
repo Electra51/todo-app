@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import CommonModal from "./CommonModal";
 import { Button, Form, Input, Select, DatePicker } from "antd";
+import { useDispatch } from "react-redux";
+import { addTask } from "../../../redux/features/tasksSlice";
 
 const { TextArea } = Input;
 
@@ -11,9 +13,10 @@ const AddTaskModal = ({ setOpen, open }) => {
     deadline: null,
     priority: "high",
   });
-
+  const dispatch = useDispatch();
   const onSubmit = () => {
     console.log(addData);
+    dispatch(addTask(addData));
   };
 
   return (
