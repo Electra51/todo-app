@@ -9,7 +9,17 @@ const tasksSlice = createSlice({
   initialState,
   reducers: {
     addTask: (state, { payload }) => {
-      state.tasks.push({ ...payload, status: "pending", id: Date.now() });
+      const createdAt = new Date();
+      state.tasks.push({
+        ...payload,
+        status: "pending",
+        id: Date.now(),
+        created_at: createdAt,
+      });
+      localStorage.setItem("tasksSlice", JSON.stringify(state.tasks));
+    },
+    deleteTask: (state, { payload }) => {
+      state.tasks.filter((task) => task.id !== payload);
       localStorage.setItem("tasksSlice", JSON.stringify(state.tasks));
     },
   },
