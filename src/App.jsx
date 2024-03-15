@@ -1,5 +1,8 @@
+import { RouterProvider } from "react-router-dom";
+import { router } from "./Routers/Routes";
+
 function App() {
-  return <h2>Welcome to my todo app</h2>;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
