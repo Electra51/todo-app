@@ -4,7 +4,7 @@ This Todo List application is built using React and Redux Toolkit, providing use
 
 
 ## Project Logo
-![Alt Text](https://i.im.ge/2024/03/16/R6RTMP.Screenshot-from-2024-03-16-21-03-30-removebg-preview.png)
+![logo]([https://i.im.ge/2024/03/16/R6RTMP.Screenshot-from-2024-03-16-21-03-30-removebg-preview.png](https://i.im.ge/2024/03/16/R6RTMP.Screenshot-from-2024-03-16-21-03-30-removebg-preview.png))
 
 
 ## Features
