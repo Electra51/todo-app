@@ -14,6 +14,7 @@ import TaskCard from "../../components/Common/Card/TaskCard";
 import AddTaskModal from "../../components/Common/AllModal/AddTaskModal";
 import { setPriorityFilter } from "../../redux/features/tasksSlice";
 import { Grid } from "antd";
+import HelmetComponent from "../../components/utils/HelmetComponent";
 
 const { useBreakpoint } = Grid;
 const { Title } = Typography;
@@ -52,6 +53,7 @@ const TaskListPage = () => {
 
   return (
     <>
+      <HelmetComponent title={"Task List | Todo-App"} />
       <div>
         <div
           style={{

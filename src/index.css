@@ -14,3 +14,17 @@
 .ant-drawer-content-wrapper {
   width: 316px !important;
 }
+.error-page-container {
+  text-align: center;
+  margin-top: 50px; /* Adjust as needed */
+}
+
+.error-code {
+  font-size: 56px;
+  font-weight: bold;
+}
+
+.error-message {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
