@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card } from "antd";
+import { Button, Card } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Dropdown, Space } from "antd";
 import { BsThreeDotsVertical } from "react-icons/bs";
@@ -69,7 +69,10 @@ const TaskCard = ({ item }) => {
       <div style={{ display: "flex ", justifyContent: "space-between" }}>
         <p>{item?.deadline}</p>
         {item.status === "Completed" ? (
-          <span style={{ fontSize: "12px" }}>Completed</span>
+          // <span style={{ fontSize: "12px" }}>Completed</span>
+          <Button type="primary" size="small" danger>
+            Completed
+          </Button>
         ) : (
           <div
             onClick={() =>
@@ -81,9 +84,12 @@ const TaskCard = ({ item }) => {
               alignItems: "center",
               gap: "3px",
               cursor: "pointer",
+              color: "#1876FD",
             }}>
             <IoCheckmarkDone />
-            <p style={{ fontSize: "12px" }}>Mark as Completed</p>
+            <p style={{ fontSize: "12px" }} className="mark">
+              Mark as Completed
+            </p>
           </div>
         )}
       </div>

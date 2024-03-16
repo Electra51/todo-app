@@ -6,3 +6,11 @@
   margin: 0;
   padding: 0;
 }
+
+.mark:hover {
+  color: #1876fd;
+  text-decoration: underline;
+}
+.ant-drawer-content-wrapper {
+  width: 316px !important;
+}
