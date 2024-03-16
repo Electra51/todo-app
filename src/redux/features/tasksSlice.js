@@ -19,11 +19,12 @@ const tasksSlice = createSlice({
       localStorage.setItem("tasksSlice", JSON.stringify(state.tasks));
     },
     deleteTask: (state, { payload }) => {
-      state.tasks.filter((task) => task.id !== payload);
+      state.tasks = state.tasks.filter((task) => task.id !== payload);
       localStorage.setItem("tasksSlice", JSON.stringify(state.tasks));
     },
     updateStatus: (state, { payload }) => {
       const target = state.tasks.find((item) => item.id === payload.id);
+      target.status = payload.status;
     },
   },
 });
