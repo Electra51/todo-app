@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const tasksFromStorage = JSON.parse(localStorage.getItem("tasks")) || [];
+
 const initialState = {
-  tasks: [],
+  tasks: tasksFromStorage,
+  selectedPriority: "all",
 };
 
 const tasksSlice = createSlice({
@@ -9,25 +12,29 @@ const tasksSlice = createSlice({
   initialState,
   reducers: {
     addTask: (state, { payload }) => {
-      const createdAt = new Date();
       state.tasks.push({
         ...payload,
         status: "Not Completed",
         id: Date.now(),
-        created_at: createdAt,
       });
-      localStorage.setItem("tasksSlice", JSON.stringify(state.tasks));
+      localStorage.setItem("tasks", JSON.stringify(state.tasks));
     },
+
     deleteTask: (state, { payload }) => {
       state.tasks = state.tasks.filter((task) => task.id !== payload);
-      localStorage.setItem("tasksSlice", JSON.stringify(state.tasks));
+      localStorage.setItem("tasks", JSON.stringify(state.tasks));
     },
     updateStatus: (state, { payload }) => {
       const target = state.tasks.find((item) => item.id === payload.id);
       target.status = payload.status;
+      localStorage.setItem("tasks", JSON.stringify(state.tasks));
+    },
+    setPriorityFilter: (state, { payload }) => {
+      state.selectedPriority = payload;
     },
   },
 });
 
-export const { addTask, deleteTask, updateStatus } = tasksSlice.actions;
+export const { addTask, deleteTask, updateStatus, setPriorityFilter } =
+  tasksSlice.actions;
 export default tasksSlice.reducer;
