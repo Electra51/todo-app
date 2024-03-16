@@ -12,7 +12,7 @@ const tasksSlice = createSlice({
       const createdAt = new Date();
       state.tasks.push({
         ...payload,
-        status: "pending",
+        status: "Not Completed",
         id: Date.now(),
         created_at: createdAt,
       });
@@ -22,8 +22,11 @@ const tasksSlice = createSlice({
       state.tasks.filter((task) => task.id !== payload);
       localStorage.setItem("tasksSlice", JSON.stringify(state.tasks));
     },
+    updateStatus: (state, { payload }) => {
+      const target = state.tasks.find((item) => item.id === payload.id);
+    },
   },
 });
 
-export const { addTask } = tasksSlice.actions;
+export const { addTask, deleteTask, updateStatus } = tasksSlice.actions;
 export default tasksSlice.reducer;

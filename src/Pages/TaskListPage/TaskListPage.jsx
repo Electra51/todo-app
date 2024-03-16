@@ -5,7 +5,7 @@ import AddTaskModal from "../../components/Common/AllModal/AddTaskModal";
 import { useSelector } from "react-redux";
 import { Col, Divider, Row } from "antd";
 import TaskCard from "../../components/Common/Card/TaskCard";
-
+import { Tabs } from "antd";
 const { Title } = Typography;
 const TaskListPage = () => {
   const [open, setOpen] = useState(false);
@@ -15,6 +15,79 @@ const TaskListPage = () => {
 
   const { tasks } = useSelector((state) => state.tasksSlice);
   console.log("tasks", tasks);
+  const onChange = (key) => {
+    console.log(key);
+  };
+
+  const completedTasks = tasks.filter((item) => item.status === "Completed");
+  const notCompletedTasks = tasks.filter(
+    (item) => item.status === "Not Completed"
+  );
+  const items = [
+    {
+      key: "1",
+      label: `All (${tasks.length})`,
+      children: (
+        <Row
+          gutter={{
+            xs: 8,
+            sm: 16,
+            md: 24,
+            lg: 32,
+          }}>
+          {tasks?.map((task, i) => {
+            return (
+              <Col className="gutter-row" span={6}>
+                <TaskCard item={task} key={i} />
+              </Col>
+            );
+          })}
+        </Row>
+      ),
+    },
+    {
+      key: "2",
+      label: `Not Completed (${notCompletedTasks.length})`,
+      children: (
+        <Row
+          gutter={{
+            xs: 8,
+            sm: 16,
+            md: 24,
+            lg: 32,
+          }}>
+          {notCompletedTasks?.map((task, i) => {
+            return (
+              <Col className="gutter-row" span={6}>
+                <TaskCard item={task} key={i} />
+              </Col>
+            );
+          })}
+        </Row>
+      ),
+    },
+    {
+      key: "3",
+      label: `Completed (${completedTasks.length})`,
+      children: (
+        <Row
+          gutter={{
+            xs: 8,
+            sm: 16,
+            md: 24,
+            lg: 32,
+          }}>
+          {completedTasks?.map((task, i) => {
+            return (
+              <Col className="gutter-row" span={6}>
+                <TaskCard item={task} key={i} />
+              </Col>
+            );
+          })}
+        </Row>
+      ),
+    },
+  ];
   return (
     <>
       <div>
@@ -44,21 +117,7 @@ const TaskListPage = () => {
           </Button>
         </div>
         <Divider orientation="left"></Divider>
-        <Row
-          gutter={{
-            xs: 8,
-            sm: 16,
-            md: 24,
-            lg: 32,
-          }}>
-          {tasks?.map((task, i) => {
-            return (
-              <Col className="gutter-row" span={6}>
-                <TaskCard item={task} key={i} />
-              </Col>
-            );
-          })}
-        </Row>
+        <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
       </div>
       <AddTaskModal setOpen={setOpen} open={open} />
     </>
