@@ -32,9 +32,21 @@ const tasksSlice = createSlice({
     setPriorityFilter: (state, { payload }) => {
       state.selectedPriority = payload;
     },
+    updateTask: (state, { payload }) => {
+      const index = state.tasks.findIndex((task) => task.id === payload.id);
+      if (index !== -1) {
+        state.tasks[index] = { ...state.tasks[index], ...payload };
+        localStorage.setItem("tasks", JSON.stringify(state.tasks));
+      }
+    },
   },
 });
 
-export const { addTask, deleteTask, updateStatus, setPriorityFilter } =
-  tasksSlice.actions;
+export const {
+  addTask,
+  deleteTask,
+  updateStatus,
+  setPriorityFilter,
+  updateTask,
+} = tasksSlice.actions;
 export default tasksSlice.reducer;

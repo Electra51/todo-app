@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Dropdown, Space } from "antd";
@@ -6,8 +6,13 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { IoCheckmarkDone } from "react-icons/io5";
 import { deleteTask, updateStatus } from "../../../redux/features/tasksSlice";
+import EditTaskModal from "../AllModal/EditTaskModal";
 
 const TaskCard = ({ item }) => {
+  const [editModalVisible, setEditModalVisible] = useState(false);
+  const handleEditTask = () => {
+    setEditModalVisible(true);
+  };
   const dispatch = useDispatch();
 
   const handleDeleteTask = (id) => {
@@ -26,7 +31,7 @@ const TaskCard = ({ item }) => {
   const items = [
     {
       key: "1",
-      label: <a>Edit</a>,
+      label: <a onClick={handleEditTask}>Edit</a>,
       icon: <EditOutlined />,
     },
     {
@@ -82,6 +87,11 @@ const TaskCard = ({ item }) => {
           </div>
         )}
       </div>
+      <EditTaskModal
+        visible={editModalVisible}
+        onCancel={() => setEditModalVisible(false)}
+        task={item}
+      />
     </Card>
   );
 };
