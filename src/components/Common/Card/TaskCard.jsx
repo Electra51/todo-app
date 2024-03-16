@@ -69,7 +69,6 @@ const TaskCard = ({ item }) => {
       ) : (
         <p className="text-[14px]">{item?.description}</p>
       )}
-
       <p style={{ fontWeight: "600", marginTop: "7px" }}>Deadline:</p>
       <div style={{ display: "flex ", justifyContent: "space-between" }}>
         <p>{item?.deadline}</p>
@@ -97,6 +96,8 @@ const TaskCard = ({ item }) => {
           </div>
         )}
       </div>
+
+      {/* task edit modal */}
       <EditTaskModal
         visible={editModalVisible}
         onCancel={() => setEditModalVisible(false)}

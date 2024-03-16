@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../Layouts/MainLayout";
-
 import User from "../Pages/UserPage/User";
 import Team from "../Pages/TeamPage/Team";
 import Setting from "../Pages/SettingPage/Setting";

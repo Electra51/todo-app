@@ -1,12 +1,14 @@
 import React from "react";
-import { Layout } from "antd";
+import { Layout, Typography } from "antd";
 import { HeartFilled } from "@ant-design/icons";
+
 const { Footer } = Layout;
+const { Text } = Typography;
 
 const FooterPart = () => {
   return (
     <Footer style={{ textAlign: "center" }}>
-      <span style={{ color: "#1876fd" }}>ToDo</span> app ©
+      <Text style={{ color: "#1876fd" }}>ToDo</Text> app ©
       {new Date().getFullYear()} Created by Safayet{" "}
       <HeartFilled style={{ color: "red" }} />
     </Footer>

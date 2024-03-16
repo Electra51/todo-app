@@ -26,6 +26,7 @@ const TaskListPage = () => {
 
   const { tasks, selectedPriority } = useSelector((state) => state.tasksSlice);
 
+  //priority change function
   const handlePriorityChange = (value) => {
     dispatch(setPriorityFilter(value));
   };
@@ -34,11 +35,13 @@ const TaskListPage = () => {
     console.log(key);
   };
 
+  //filter function based on priority
   const filteredAllTasks =
     selectedPriority === "all"
       ? tasks
       : tasks.filter((task) => task.priority === selectedPriority);
 
+  //col based on screen size
   const getColSpan = () => {
     if (screens.xs) {
       return 24; // For small devices, display one card per row
@@ -80,6 +83,8 @@ const TaskListPage = () => {
           </Button>
         </div>
         <Divider orientation="left" />
+
+        {/* priority select filter */}
         <div
           style={{
             marginBottom: "20px",
@@ -100,8 +105,10 @@ const TaskListPage = () => {
             <Option value="low">Low</Option>
           </Select>
         </div>
+
+        {/* tab for complete and incomplete task */}
         <Tabs defaultActiveKey="1" onChange={onChange}>
-          <Tabs.TabPane tab={`All (${filteredAllTasks.length})`} key="1">
+          <Tabs.TabPane tab={`All Task (${filteredAllTasks.length})`} key="1">
             <Row gutter={[16, 16]}>
               {filteredAllTasks.map((task) => (
                 <Col span={getColSpan()} key={task.id}>
@@ -111,7 +118,7 @@ const TaskListPage = () => {
             </Row>
           </Tabs.TabPane>
           <Tabs.TabPane
-            tab={`Not Completed (${
+            tab={`Incompleted Tasks (${
               filteredAllTasks.filter((task) => task.status === "Not Completed")
                 .length
             })`}
@@ -127,7 +134,7 @@ const TaskListPage = () => {
             </Row>
           </Tabs.TabPane>
           <Tabs.TabPane
-            tab={`Completed (${
+            tab={`Completed Tasks (${
               filteredAllTasks.filter((task) => task.status === "Completed")
                 .length
             })`}
@@ -144,6 +151,8 @@ const TaskListPage = () => {
           </Tabs.TabPane>
         </Tabs>
       </div>
+
+      {/* task add modal */}
       <AddTaskModal setOpen={setOpen} open={open} />
     </>
   );

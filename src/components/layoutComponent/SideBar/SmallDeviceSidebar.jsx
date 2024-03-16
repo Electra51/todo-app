@@ -1,5 +1,5 @@
 import React from "react";
-import { Drawer, Menu } from "antd";
+import { Drawer, Image, Menu } from "antd";
 import { LuListTodo } from "react-icons/lu";
 import { FileOutlined, TeamOutlined } from "@ant-design/icons";
 import { IoSettingsOutline } from "react-icons/io5";
@@ -10,10 +10,12 @@ import { toggleSidebar } from "../../../redux/features/sidebarSlice";
 import { Space, Typography } from "antd";
 
 const { Text } = Typography;
+
 const SmallDeviceSidebar = () => {
   const visible = useSelector((state) => state.sidebar.visible);
   const dispatch = useDispatch();
 
+  //sidebar toggle function
   const handleToggleDrawer = () => {
     dispatch(toggleSidebar());
   };
@@ -34,7 +36,7 @@ const SmallDeviceSidebar = () => {
     <Drawer placement="left" onClose={handleToggleDrawer} visible={visible}>
       {/* project logo */}
       <Space align="center" style={{ padding: "5px 10px 30px 10px" }}>
-        <img src={todoLogo} alt="" width={50} />
+        <Image src={todoLogo} alt="" width={50} />
         <Text strong style={{ color: "black", fontSize: "20px" }}>
           App
         </Text>

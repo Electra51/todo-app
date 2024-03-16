@@ -8,6 +8,7 @@ const EditTaskModal = ({ visible, onCancel, task }) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
+  //modal close function
   const onFinish = (values) => {
     setLoading(true);
     dispatch(updateTask({ id: task.id, ...values }));
@@ -37,10 +38,7 @@ const EditTaskModal = ({ visible, onCancel, task }) => {
         form={form}
         onFinish={onFinish}
         initialValues={{ ...task }}>
-        <Form.Item
-          name="title"
-          label="Title"
-          rules={[{ required: true, message: "Please input the title!" }]}>
+        <Form.Item name="title" label="Title">
           <Input />
         </Form.Item>
         <Form.Item name="description" label="Description">

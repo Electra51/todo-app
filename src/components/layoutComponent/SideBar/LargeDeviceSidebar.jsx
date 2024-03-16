@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Menu } from "antd";
+import { Image, Layout, Menu } from "antd";
 import { LuListTodo } from "react-icons/lu";
 import { FileOutlined, TeamOutlined } from "@ant-design/icons";
 import { IoSettingsOutline } from "react-icons/io5";
@@ -11,6 +11,7 @@ const { Text } = Typography;
 const { Sider } = Layout;
 
 const LargeDeviceSidebar = ({ collapsed, setCollapsed }) => {
+  //sidebar collaspe function
   const handleCollapse = (value) => {
     setCollapsed(value);
   };
@@ -35,7 +36,7 @@ const LargeDeviceSidebar = ({ collapsed, setCollapsed }) => {
       style={{ background: "black" }}>
       {/* project logo */}
       <Space align="center" style={{ padding: "5px 10px 30px 10px" }}>
-        <img src={todoLogo} alt="" width={50} />
+        <Image src={todoLogo} alt="" width={50} />
         <Text strong style={{ color: "white", fontSize: "20px" }}>
           App
         </Text>

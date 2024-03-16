@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+//using local storage to persist tasks even if the user refreshes the page
 const tasksFromStorage = JSON.parse(localStorage.getItem("tasks")) || [];
 
 const initialState = {
@@ -19,7 +20,6 @@ const tasksSlice = createSlice({
       });
       localStorage.setItem("tasks", JSON.stringify(state.tasks));
     },
-
     deleteTask: (state, { payload }) => {
       state.tasks = state.tasks.filter((task) => task.id !== payload);
       localStorage.setItem("tasks", JSON.stringify(state.tasks));
