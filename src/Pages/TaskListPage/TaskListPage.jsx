@@ -1,14 +1,26 @@
 import React, { useState } from "react";
-import { Typography, Button, Divider, Tabs, Row, Col, Select } from "antd";
+import {
+  Typography,
+  Button,
+  Divider,
+  Tabs,
+  Row,
+  Col,
+  Select,
+  Space,
+} from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import TaskCard from "../../components/Common/Card/TaskCard";
 import AddTaskModal from "../../components/Common/AllModal/AddTaskModal";
 import { setPriorityFilter } from "../../redux/features/tasksSlice";
+import { Grid } from "antd";
 
+const { useBreakpoint } = Grid;
 const { Title } = Typography;
 const { Option } = Select;
 
 const TaskListPage = () => {
+  const screens = useBreakpoint();
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -27,21 +39,38 @@ const TaskListPage = () => {
       ? tasks
       : tasks.filter((task) => task.priority === selectedPriority);
 
+  const getColSpan = () => {
+    if (screens.xs) {
+      return 24; // For small devices, display one card per row
+    } else {
+      return 6; // For larger devices, display four cards per row
+    }
+  };
+
   return (
     <>
       <div>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div>
-            <Title style={{ fontSize: "20px" }}>All Tasks List</Title>
-            <Title
-              style={{
-                fontSize: "14px",
-                marginTop: "-05px",
-                color: "#36454F",
-                fontWeight: "400",
-              }}>
-              Lorem ipsum is a placeholder text commonly
-            </Title>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: `${screens.xs ? "column" : "row"}`,
+            justifyContent: `${screens.xs ? "center" : "space-between"}`,
+          }}>
+          <div style={{ marginBottom: "20px" }}>
+            <Space
+              direction="vertical"
+              align={`${screens.xs ? "center" : "start"}`}>
+              <Title style={{ fontSize: "20px" }}>All Tasks List</Title>
+              <Title
+                style={{
+                  fontSize: "14px",
+                  color: "#36454F",
+                  fontWeight: "400",
+                  marginTop: "-10px",
+                }}>
+                Lorem ipsum is a placeholder text commonly
+              </Title>
+            </Space>
           </div>
           <Button
             type="primary"
@@ -75,7 +104,7 @@ const TaskListPage = () => {
           <Tabs.TabPane tab={`All (${filteredAllTasks.length})`} key="1">
             <Row gutter={[16, 16]}>
               {filteredAllTasks.map((task) => (
-                <Col span={6} key={task.id}>
+                <Col span={getColSpan()} key={task.id}>
                   <TaskCard item={task} />
                 </Col>
               ))}
@@ -91,7 +120,7 @@ const TaskListPage = () => {
               {filteredAllTasks
                 .filter((task) => task.status === "Not Completed")
                 .map((task) => (
-                  <Col span={6} key={task.id}>
+                  <Col span={getColSpan()} key={task.id}>
                     <TaskCard item={task} />
                   </Col>
                 ))}
@@ -107,7 +136,7 @@ const TaskListPage = () => {
               {filteredAllTasks
                 .filter((task) => task.status === "Completed")
                 .map((task) => (
-                  <Col span={6} key={task.id}>
+                  <Col span={getColSpan()} key={task.id}>
                     <TaskCard item={task} />
                   </Col>
                 ))}

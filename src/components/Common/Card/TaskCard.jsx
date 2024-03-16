@@ -64,12 +64,16 @@ const TaskCard = ({ item }) => {
         width: 300,
         backgroundColor: priorityColor,
       }}>
-      <p>{item?.description}</p>
+      {item?.description?.length > 50 ? (
+        <p className="text-[14px]">{item?.description.slice(0, 50) + "..."}</p>
+      ) : (
+        <p className="text-[14px]">{item?.description}</p>
+      )}
+
       <p style={{ fontWeight: "600", marginTop: "7px" }}>Deadline:</p>
       <div style={{ display: "flex ", justifyContent: "space-between" }}>
         <p>{item?.deadline}</p>
         {item.status === "Completed" ? (
-          // <span style={{ fontSize: "12px" }}>Completed</span>
           <Button type="primary" size="small" danger>
             Completed
           </Button>
