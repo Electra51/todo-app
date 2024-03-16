@@ -10,10 +10,9 @@ import { deleteTask, updateStatus } from "../../../redux/features/tasksSlice";
 const TaskCard = ({ item }) => {
   const dispatch = useDispatch();
 
-  const handleDeleteTodo = (id) => {
+  const handleDeleteTask = (id) => {
     dispatch(deleteTask(id));
   };
-
   const updateStatusText =
     item.status === "Not Completed" ? "Completed" : "Completed";
 
@@ -33,7 +32,8 @@ const TaskCard = ({ item }) => {
     {
       key: "2",
       label: <a>Delete</a>,
-      icon: <DeleteOutlined onClick={() => handleDeleteTodo(item.id)} />,
+      icon: <DeleteOutlined />,
+      onClick: () => handleDeleteTask(item.id),
     },
   ];
 
